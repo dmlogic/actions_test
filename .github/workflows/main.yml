@@ -15,11 +15,12 @@ jobs:
         tools: composer:v2
     - name: Do stuff
       run: |
-        php test.php ${{ github.ref_name }}
+        php test.php ${{ github.ref_name }} >> $GITHUB_ENV
     - name: Set the value
       run: |
-        echo "FOO=$(git status)" >> $GITHUB_ENV
+        echo "FOO=goo" >> $GITHUB_ENV
     - name: Use the value
       run: |
-        echo "cock and balls"
-        # echo "${{ env.FOO }}"
+        echo "raaa"
+        echo "${{ env.FOO }}"
+        echo "${{ env.SHOO }}"
