@@ -9,6 +9,6 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
 
       - name: My Composite Action
-        uses: ./.github/actions/action.yml
+        uses: ./.github/actions/my-action
         with:
           who-to-greet: 'Mona the Octocat'
