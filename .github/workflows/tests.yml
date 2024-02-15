@@ -1,21 +1,14 @@
 name: Run tests
 
-on: [push, workflow_dispatch]
+on: push
 
 jobs:
-  phptests:
+  composite:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Env
-        run: cp .env.ci .env
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+
+      - name: My Composite Action
+        uses: ./.github/actions/action.yml
         with:
-          php-version: 8.2
-          tools: composer:v2
-      - name: Composer
-        run: composer install --no-interaction --optimize-autoloader --prefer-dist
-      - name: Perform tests
-        run: php vendor/bin/pest
+          who-to-greet: 'Mona the Octocat'
