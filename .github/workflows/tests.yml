@@ -1,0 +1,16 @@
+name: Push when filtered
+
+on: [delete]
+
+
+jobs:
+  something:
+    runs-on: ubuntu-latest
+    # if: startsWith(github.ref, 'feature/sc-')
+    steps:
+      - name: Debug
+        run: |
+          echo "Branch name: ${{ github.ref }}"
+          echo "Event name: ${{ github.event_name }}"
+      - run: echo "🔎 We ran code ${{ github.ref }} "
+      - run: echo "🔎 We ran code ${{ github.ref }} "
