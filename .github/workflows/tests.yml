@@ -1,16 +1,21 @@
-name: Push when filtered
+name: Run tests
 
-on: [delete]
-
+on: [push, workflow_dispatch]
 
 jobs:
-  something:
+  phptests:
     runs-on: ubuntu-latest
-    # if: startsWith(github.ref, 'feature/sc-')
     steps:
-      - name: Debug
-        run: |
-          echo "Branch name: ${{ github.ref }}"
-          echo "Event name: ${{ github.event_name }}"
-      - run: echo "🔎 We ran code ${{ github.ref }} "
-      - run: echo "🔎 We ran code ${{ github.ref }} "
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          tools: composer:v2
+      - name: Composer
+        run: composer install --no-interaction --optimize-autoloader --prefer-dist
+      - name: Env
+        run: cp .env.ci .env
+      - name: Perform tests
+        run: php vendor/bin/pest

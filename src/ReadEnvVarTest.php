@@ -3,6 +3,7 @@
 use App\ReadEnvVar;
 
 it('returns a value from .env', function () {
+    dump('.env exists', file_exists('../.env'));
     expect(ReadEnvVar::execute('VAR_ONE'))->toBe('foo');
 });
 
