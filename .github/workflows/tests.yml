@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Env
+        run: cp .env.ci .env
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -15,7 +17,5 @@ jobs:
           tools: composer:v2
       - name: Composer
         run: composer install --no-interaction --optimize-autoloader --prefer-dist
-      - name: Env
-        run: cp .env.ci .env
       - name: Perform tests
         run: php vendor/bin/pest
