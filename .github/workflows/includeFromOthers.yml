@@ -1,0 +1,19 @@
+name: Included workflow
+
+on:
+  workflow_call:
+    inputs:
+      BRANCH:
+        required: true
+        type: string
+
+jobs:
+  DoStuff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug
+        run: |
+          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+          echo "Supplied to us was ${{ inputs.BRANCH }}"
+      - name: Tests
+        uses: ./.github/workflows/tests.yml

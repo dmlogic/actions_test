@@ -1,0 +1,24 @@
+name: Run this when a PR is closed
+
+on:
+  pull_request:
+    branches:
+      - feature/sc-*/**
+      - bug/sc-*/**
+      - chore/sc-*/**
+    types:
+      - closed
+
+jobs:
+  Debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo out
+        run: |
+          echo "PR ref = ${{ github.event.pull_request.head.ref }}"
+          echo "General ref = ${{ github.ref }}"
+
+  DoStuff:
+    uses: ./.github/workflows/includeFromOthers.yml
+    with:
+      BRANCH: ${{ github.event.pull_request.head.ref }}

@@ -1,0 +1,18 @@
+name: Run this when a PR is closed
+
+on:
+  workflow_dispatch
+
+jobs:
+  Debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Check context"
+        run: |
+          echo "ref is ${{ github.ref }}"
+          echo "ref_name is ${{ github.ref_name }}"
+
+  DoStuff:
+    uses: ./.github/workflows/includeFromOthers.yml
+    with:
+      BRANCH: ${{ github.ref }}
