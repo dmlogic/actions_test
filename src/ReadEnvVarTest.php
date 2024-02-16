@@ -14,5 +14,3 @@ it('reads an exported envvar', function () {
     $_ENV['FOOFOO'] = 'foo';
     expect(ReadEnvVar::execute('FOOFOO'))->toBe('foo');
 });
-
-
