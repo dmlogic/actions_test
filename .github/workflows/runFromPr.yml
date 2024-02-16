@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Echo out
         run: |
-          echo "This is our first PR"
+          echo "This is our second PR"
           echo "PR ref = ${{ github.event.pull_request.head.ref }}"
           echo "General ref = ${{ github.ref }}"
 
