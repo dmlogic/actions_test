@@ -1,4 +1,4 @@
-name: Run this when a PR is closed
+name: Run this whenever you need to
 
 on:
   workflow_dispatch
