@@ -11,6 +11,8 @@ jobs:
   DoStuff:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Debug
         run: |
           echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
