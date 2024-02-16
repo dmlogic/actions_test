@@ -3,9 +3,8 @@ name: Run this when a PR is closed
 on:
   pull_request:
     branches:
-      - feature/sc-*/**
-      - bug/sc-*/**
-      - chore/sc-*/**
+      - main
+      - develop
     types:
       - closed
 
@@ -20,6 +19,7 @@ jobs:
           echo "General ref = ${{ github.ref }}"
 
   DoStuff:
+    if: ${{ startsWith(github.event.pull_request.head.ref, 'feature/sc-') || startsWith(github.event.pull_request.head.ref, 'chore/sc-') || startsWith(github.event.pull_request.head.ref, 'bug/sc-') }}
     uses: ./.github/workflows/includeFromOthers.yml
     with:
       BRANCH: ${{ github.event.pull_request.head.ref }}
