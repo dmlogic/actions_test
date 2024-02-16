@@ -13,6 +13,11 @@ jobs:
           echo "ref_name is ${{ github.ref_name }}"
 
   DoStuff:
-    uses: ./.github/workflows/includeFromOthers.yml
-    with:
-      BRANCH: ${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Included
+        uses: ./.github/workflows/includeFromOthers.yml
+        with:
+          BRANCH: ${{ github.ref }}
