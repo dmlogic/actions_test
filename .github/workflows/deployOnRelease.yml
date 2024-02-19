@@ -1,0 +1,17 @@
+name: Deploy on Relese
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deployRelease:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug
+        run: |
+          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+          echo "Refname is ${{ github.ref_name }}"
+          echo "Ref is ${{ github.ref }}"
+          echo "Event ref is ${{ github.event.ref }}"
